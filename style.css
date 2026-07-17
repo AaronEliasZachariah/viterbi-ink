@@ -1,0 +1,170 @@
+/* Viterbi Ink — site tokens. The palette IS the app's dark chrome:
+   graphite canvas, white ink, the periwinkle selection tint. */
+:root {
+  --canvas: #14151b;
+  --chrome: #1e2027;
+  --chrome-high: #262933;
+  --ink: #ecedf2;
+  --ink-dim: #9ba0ad;
+  --accent: #96a9f2;
+  --accent-ink: #101322;
+  --hairline: rgba(236, 237, 242, 0.14);
+  --measure: 66ch;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background-color: var(--canvas);
+  /* The app's canvas dot grid, faint — the page is a piece of the canvas. */
+  background-image: radial-gradient(rgba(236, 237, 242, 0.055) 1px, transparent 1.5px);
+  background-size: 28px 28px;
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.display {
+  font-family: "Schibsted Grotesk", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.mono {
+  font-family: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* ---------- landing ---------- */
+
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12vh 24px 8vh;
+  gap: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 9vw, 5.6rem);
+  line-height: 1.02;
+}
+
+/* The signature: one ink stroke that draws itself under the wordmark. */
+.flourish { width: min(340px, 62vw); height: 26px; overflow: visible; }
+.flourish path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.05s cubic-bezier(0.6, 0, 0.2, 1) 0.25s forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .flourish path { animation: none; stroke-dashoffset: 0; }
+}
+
+.tagline { font-size: clamp(1.05rem, 2.4vw, 1.3rem); color: var(--ink); max-width: 34ch; }
+
+.facts { margin-top: 2px; }
+
+.actions { display: flex; align-items: center; gap: 26px; margin-top: 26px; flex-wrap: wrap; justify-content: center; }
+
+.pill {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+  padding: 13px 26px;
+  border-radius: 999px;
+}
+.pill:hover { text-decoration: none; filter: brightness(1.07); }
+
+.quiet { color: var(--ink-dim); }
+
+/* ---------- shared footer ---------- */
+
+footer {
+  border-top: 1px solid var(--hairline);
+  padding: 22px 24px 30px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+footer .mono { text-transform: none; letter-spacing: 0.04em; }
+
+/* ---------- policy page ---------- */
+
+.page {
+  width: 100%;
+  max-width: calc(var(--measure) + 96px);
+  margin: 0 auto;
+  padding: 34px 24px 70px;
+  flex: 1;
+}
+
+.topnav { margin-bottom: 7vh; }
+.topnav a { color: var(--ink-dim); }
+.topnav a:hover { color: var(--ink); text-decoration: none; }
+
+.page .eyebrow { display: block; margin-bottom: 14px; color: var(--accent); }
+.page h1 { font-size: clamp(2rem, 5vw, 2.9rem); margin-bottom: 10px; }
+.page .date { display: block; margin-bottom: 40px; }
+
+.page h2 {
+  font-family: "Schibsted Grotesk", system-ui, sans-serif;
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 42px 0 10px;
+}
+.page p, .page li { color: var(--ink-dim); max-width: var(--measure); }
+.page p strong, .page li strong { color: var(--ink); font-weight: 600; }
+.page p + p { margin-top: 12px; }
+.page ul { padding-left: 1.2em; }
+.page li { margin: 6px 0; }
+
+/* Permissions table — styled like the app's settings rows. */
+.perm {
+  width: 100%;
+  max-width: var(--measure);
+  margin-top: 14px;
+  border-collapse: collapse;
+  background: var(--chrome);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.perm th, .perm td {
+  text-align: left;
+  padding: 12px 16px;
+  border-top: 1px solid var(--hairline);
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  vertical-align: top;
+}
+.perm th { color: var(--ink); font-weight: 600; border-top: none; }
+.perm td:first-child { color: var(--ink); white-space: nowrap; }
+
+@media (max-width: 480px) {
+  .perm td:first-child { white-space: normal; }
+  .actions { gap: 18px; }
+}
