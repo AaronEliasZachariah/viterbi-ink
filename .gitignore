@@ -1,0 +1,4 @@
+# Wrangler working dir + deploy logs — never commit or serve these.
+.wrangler/
+deploy.log
+node_modules/

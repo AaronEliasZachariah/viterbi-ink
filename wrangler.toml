@@ -1,0 +1,17 @@
+# Cloudflare Workers — static-assets deploy for the Viterbi Ink site.
+# Serves index.html / privacy.html / style.css at https://viterbi.eliascorp.org.
+#
+# This is a SEPARATE worker from the personal site (`eliascorp-v2`), so deploying
+# here never touches eliascorp.org itself. The [[routes]] custom_domain binds the
+# viterbi.eliascorp.org subdomain (Cloudflare adds the DNS record + TLS cert on
+# first deploy, since eliascorp.org is a zone in this account).
+
+name = "viterbi-ink-site"
+compatibility_date = "2026-07-01"
+
+[assets]
+directory = "./public"
+
+[[routes]]
+pattern = "viterbi.eliascorp.org"
+custom_domain = true
