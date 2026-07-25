@@ -50,8 +50,10 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- landing ---------- */
 
+main { flex: 1; }
+
 .hero {
-  flex: 1;
+  min-height: 86vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,6 +101,68 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .pill:hover { text-decoration: none; filter: brightness(1.07); }
 
 .quiet { color: var(--ink-dim); }
+
+/* ---------- product showcase ---------- */
+
+.showcase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 2vh 24px 11vh;
+}
+
+/* A screenshot framed as a floating device, lifted off the canvas dot grid. */
+.device {
+  width: min(940px, 100%);
+  padding: 8px;
+  background: var(--chrome);
+  border: 1px solid var(--hairline);
+  border-radius: 18px;
+  box-shadow:
+    0 1px 0 rgba(236, 237, 242, 0.05) inset,
+    0 40px 90px -40px rgba(0, 0, 0, 0.85),
+    0 0 70px -30px rgba(150, 169, 242, 0.4);
+}
+.device img { display: block; width: 100%; height: auto; border-radius: 11px; }
+
+.cap {
+  font-family: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-dim);
+  text-align: center;
+  max-width: 48ch;
+}
+
+/* ---------- colour detail (split) ---------- */
+
+.split {
+  width: min(940px, 100%);
+  margin: 0 auto;
+  padding: 0 24px 12vh;
+  display: grid;
+  grid-template-columns: 1fr 0.82fr;
+  gap: clamp(28px, 5vw, 60px);
+  align-items: center;
+}
+.split .device { width: 100%; }
+.split-copy .mono { display: block; color: var(--accent); margin-bottom: 12px; }
+.split-copy h2 {
+  font-family: "Schibsted Grotesk", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.6rem, 3.4vw, 2.15rem);
+  line-height: 1.08;
+  margin-bottom: 12px;
+}
+.split-copy p { color: var(--ink-dim); max-width: 34ch; }
+
+@media (max-width: 720px) {
+  .split { grid-template-columns: 1fr; gap: 24px; }
+  .split-copy { text-align: center; }
+  .split-copy p { margin-inline: auto; }
+}
 
 /* ---------- shared footer ---------- */
 
